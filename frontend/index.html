@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="toolbar">
+        <h1>Todo list</h1>
+        <button class="add-btn" onclick="openForm()">+ Add task</button>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+            <tr>
+                <th class="id-cell">#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Due date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="todoList"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div id="formModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Add new task</h2>
+        <input type="hidden" id="todoId">
+        <div class="field">
+            <label for="title">Title</label>
+            <input id="title" placeholder="Enter title" required>
+        </div>
+        <div class="field">
+            <label for="description">Description</label>
+            <input id="description" placeholder="Enter description" required>
+        </div>
+        <div class="field">
+            <label for="due_date">Due date</label>
+            <input type="date" id="due_date" required>
+        </div>
+        <div class="field">
+            <label for="status">Status</label>
+            <select id="status">
+                <option>Not Done</option>
+                <option>Pending</option>
+                <option>Done</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeForm()">Cancel</button>
+            <button class="btn-save" onclick="saveTodo()">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
