@@ -1,13 +1,28 @@
-version: '3'
+version: "3.9"
+
 services:
+  db:
+    image: postgres:15
+    container_name: todo-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: todo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   backend:
     build: ./backend
+    container_name: todo-backend
+    depends_on:
+      - db
     ports:
       - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:123456@db:5432/todo_db
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
+volumes:
+  postgres_data:
